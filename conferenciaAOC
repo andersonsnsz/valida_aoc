@@ -1,0 +1,267 @@
+#Conferência SICOM - aocEmail x aocSof
+
+# Carregar a primeira planilha
+aoc_email <- read.csv2("C:/PBH/trabalho/2023/SICOM/Conferência 2023/aoc_email_ago.csv", header = FALSE)
+
+# Carregar a segunda planilha
+aoc_sof <- read.csv2 ("C:/PBH/trabalho/2023/SICOM/Conferência 2023/aoc_sof_ago.csv")
+
+# Criação do data frame tabela_10 a tabela_15
+tabela_10_email <- data.frame(
+  tipoRegistro = character(),  # Coluna tipoRegistro (tipo texto)
+  codOrgao = character(),      # Coluna codOrgao (tipo texto)
+  nroDecreto = character(),    # Coluna nroDecreto (tipo texto)
+  dataDecreto = character()    # Coluna dataDecreto (tipo texto)
+)
+
+tabela_11_email <- data.frame(
+  tipoRegistro = character(),
+  codReduzidoDecreto = character(),
+  nroDecreto = character(),
+  tipoDecretoAlteracao = character(),
+  justificativa = character(),
+  valorAberto = character()
+)
+
+tabela_12_email <- data.frame(
+  tipoRegistro = character(),
+  codReduzidoDecreto = character(),
+  nroLeiAlteracao = character(),
+  dataLeiAlteracao = character(),
+  tpLeiOrigDecreto = character(),
+  tipoLeiAlteracao = character(),
+  valorAbertoLei = character()
+)
+
+tabela_13_email <- data.frame(
+  tipoRegistro = character(),
+  codReduzidoDecreto = character(),
+  origemRecAlteracao = character(),
+  valorAbertoOrigem = character()
+)
+
+tabela_14_email <- data.frame(
+  tipoRegistro = character(),
+  codReduzidoDecreto = character(),
+  origemRecAlteracao = character(),
+  codOrigem = character(),
+  codOrgao = character(),
+  codUnidadeSub = character(),
+  codFuncao = character(),
+  codSubFuncao = character(),
+  codPrograma = character(),
+  idAcao = character(),
+  idSubAcao = character(),
+  naturezaDespesa = character(),
+  codFontRecursos = character(),
+  vlAcrescimo = character()
+)
+
+tabela_15_email <- data.frame(
+  tipoRegistro = character(),
+  codReduzidoDecreto = character(),
+  origemRecAlteracao = character(),
+  codOrigem = character(),
+  codOrgao = character(),
+  codUnidadeSub = character(),
+  codFuncao = character(),
+  codSubFuncao = character(),
+  codPrograma = character(),
+  idAcao = character(),
+  idSubAcao = character(),
+  naturezaDespesa = character(),
+  codFontRecursos = character(),
+  vlReducao = character()
+)
+
+# Filtrar as linhas correspondentes ao valor atual
+linhas_10 <- aoc_email[aoc_email$V1 == 10, ]
+linhas_11 <- aoc_email[aoc_email$V1 == 11, ]
+linhas_12 <- aoc_email[aoc_email$V1 == 12, ]
+linhas_13 <- aoc_email[aoc_email$V1 == 13, ]
+linhas_14 <- aoc_email[aoc_email$V1 == 14, ]
+linhas_15 <- aoc_email[aoc_email$V1 == 15, ]
+
+
+# Criar as tabelas 10 a 15 com o mesmo número de linhas que as linhas 10 a 15
+tabela_10_email <- data.frame(
+  tipoRegistro = character(length = nrow(linhas_10)),  
+  codOrgao = character(length = nrow(linhas_10)),      
+  nroDecreto = character(length = nrow(linhas_10)),    
+  dataDecreto = character(length = nrow(linhas_10)))
+
+tabela_11_email <- data.frame(
+  tipoRegistro = character(length = nrow(linhas_11)),  
+  codReduzidoDecreto = character(length = nrow(linhas_11)),      
+  nroDecreto = character(length = nrow(linhas_11)),    
+  tipoDecretoAlteracao = character(length = nrow(linhas_11)),
+  justificativa = character(length = nrow(linhas_11)),
+  valorAberto = character(length = nrow(linhas_11)))
+
+tabela_12_email <- data.frame(
+  tipoRegistro = character(length = nrow(linhas_12)),  
+  codReduzidoDecreto = character(length = nrow(linhas_12)),      
+  nroLeiAlteracao = character(length = nrow(linhas_12)),    
+  dataLeiAlteracao = character(length = nrow(linhas_12)),
+  tpLeiOrigDecreto = character(length = nrow(linhas_12)),
+  tipoLeiAlteracao = character(length = nrow(linhas_12)),
+  valorAbertoLei = character(length = nrow(linhas_12)))
+
+tabela_13_email <- data.frame(
+  tipoRegistro = character(length = nrow(linhas_13)),  
+  codReduzidoDecreto = character(length = nrow(linhas_13)),      
+  origemRecAlteracao = character(length = nrow(linhas_13)),    
+  valorAbertoOrigem = character(length = nrow(linhas_13)))
+
+tabela_14_email <- data.frame(
+  tipoRegistro = character(length = nrow(linhas_14)),
+  codReduzidoDecreto = character(length = nrow(linhas_14)),
+  origemRecAlteracao = character(length = nrow(linhas_14)),
+  codOrigem = character(length = nrow(linhas_14)),
+  codOrgao = character(length = nrow(linhas_14)),
+  codUnidadeSub = character(length = nrow(linhas_14)),
+  codFuncao = character(length = nrow(linhas_14)),
+  codSubFuncao = character(length = nrow(linhas_14)),
+  codPrograma = character(length = nrow(linhas_14)),
+  idAcao = character(length = nrow(linhas_14)),
+  idSubAcao = character(length = nrow(linhas_14)),
+  naturezaDespesa = character(length = nrow(linhas_14)),
+  codFontRecursos = character(length = nrow(linhas_14)),
+  vlAcrescimo = character(length = nrow(linhas_14)))
+
+tabela_15_email <- data.frame(
+  tipoRegistro = character(length = nrow(linhas_15)),
+  codReduzidoDecreto = character(length = nrow(linhas_15)),
+  origemRecAlteracao = character(length = nrow(linhas_15)),
+  codOrigem = character(length = nrow(linhas_15)),
+  codOrgao = character(length = nrow(linhas_15)),
+  codUnidadeSub = character(length = nrow(linhas_15)),
+  codFuncao = character(length = nrow(linhas_15)),
+  codSubFuncao = character(length = nrow(linhas_15)),
+  codPrograma = character(length = nrow(linhas_15)),
+  idAcao = character(length = nrow(linhas_15)),
+  idSubAcao = character(length = nrow(linhas_15)),
+  naturezaDespesa = character(length = nrow(linhas_15)),
+  codFontRecursos = character(length = nrow(linhas_15)),
+  vlReducao = character(length = nrow(linhas_15)))
+
+
+# Preencher as tabelas com os dados filtrados
+tabela_10_email$tipoRegistro <- linhas_10$V1
+tabela_10_email$codOrgao <- linhas_10$V2
+tabela_10_email$nroDecreto <- linhas_10$V3
+tabela_10_email$dataDecreto <- linhas_10$V4
+
+tabela_11_email$tipoRegistro <- linhas_11$V1
+tabela_11_email$codReduzidoDecreto <- linhas_11$V2
+tabela_11_email$nroDecreto <- linhas_11$V3
+tabela_11_email$tipoDecretoAlteracao <- linhas_11$V4
+tabela_11_email$justificativa <- linhas_11$V5
+tabela_11_email$valorAberto <- linhas_11$V6
+
+tabela_12_email$tipoRegistro <- linhas_12$V1
+tabela_12_email$codReduzidoDecreto <- linhas_12$V2
+tabela_12_email$nroLeiAlteracao <- linhas_12$V3
+tabela_12_email$dataLeiAlteracao <- linhas_12$V4
+tabela_12_email$tpLeiOrigDecreto <- linhas_12$V5
+tabela_12_email$tipoLeiAlteracao <- linhas_12$V6
+tabela_12_email$valorAbertoLei <- linhas_12$V7
+
+tabela_13_email$tipoRegistro <- linhas_13$V1
+tabela_13_email$codReduzidoDecreto <- linhas_13$V2
+tabela_13_email$origemRecAlteracao <- linhas_13$V3
+tabela_13_email$valorAbertoOrigem <- linhas_13$V4
+
+tabela_14_email$tipoRegistro <- linhas_14$V1
+tabela_14_email$codReduzidoDecreto <- linhas_14$V2
+tabela_14_email$origemRecAlteracao <- linhas_14$V3
+tabela_14_email$codOrigem <- linhas_14$V4
+tabela_14_email$codOrgao <- linhas_14$V5
+tabela_14_email$codUnidadeSub <- linhas_14$V6
+tabela_14_email$codFuncao <- linhas_14$V7
+tabela_14_email$codSubFuncao <- linhas_14$V8
+tabela_14_email$codPrograma <- linhas_14$V9
+tabela_14_email$idAcao <- linhas_14$V10
+tabela_14_email$idSubAcao <- linhas_14$V11
+tabela_14_email$naturezaDespesa <- linhas_14$V12
+tabela_14_email$codFontRecursos <- linhas_14$V13
+tabela_14_email$vlAcrescimo <- linhas_14$V14
+
+tabela_15_email$tipoRegistro <- linhas_15$V1
+tabela_15_email$codReduzidoDecreto <- linhas_15$V2
+tabela_15_email$origemRecAlteracao <- linhas_15$V3
+tabela_15_email$codOrigem <- linhas_15$V4
+tabela_15_email$codOrgao <- linhas_15$V5
+tabela_15_email$codUnidadeSub <- linhas_15$V6
+tabela_15_email$codFuncao <- linhas_15$V7
+tabela_15_email$codSubFuncao <- linhas_15$V8
+tabela_15_email$codPrograma <- linhas_15$V9
+tabela_15_email$idAcao <- linhas_15$V10
+tabela_15_email$idSubAcao <- linhas_15$V11
+tabela_15_email$naturezaDespesa <- linhas_15$V12
+tabela_15_email$codFontRecursos <- linhas_15$V13
+tabela_15_email$vlReducao <- linhas_15$V14
+
+############tratar os dados que vêm do sof##################################
+
+#Criar a tabela_10_sof
+tabela_10_sof <- data.frame(
+  nroDecreto = aoc_sof$decreto,
+  dataDecreto = aoc_sof$data_aprovacao,
+  valor_decreto = aoc_sof$valor_decreto
+)
+
+#Aplicar distinct no próprio conjunto de dados aoc_sof
+tabela_10_sof <- distinct(aoc_sof, decreto, data_aprovacao, valor_decreto)
+
+#Criar as tabelas_11 a 15_sof
+tabela_11_sof <- data.frame(
+  nroDecreto = aoc_sof$decreto,
+  tipoDecretoAlteracao = aoc_sof$tipo_aoc_sicom,
+  valorAberto = aoc_sof$valor_decreto
+)
+tabela_11_sof <- distinct(aoc_sof, decreto, tipo_aoc_sicom, valor_decreto)
+
+tabela_12_sof <- data.frame(
+  valorAbertoLei = aoc_sof$valor_decreto
+)
+tabela_12_sof <- distinct(aoc_sof, valor_decreto)
+
+tabela_13_sof <- data.frame(
+  origemRecAlteracao = aoc_sof$origem_alteracao_orc,
+  valorAbertoOrigem = aoc_sof$valor_decreto
+)
+tabela_13_sof <- distinct(aoc_sof, origem_alteracao_orc, valor_decreto)
+
+tabela_14_sof <- data.frame(
+  origemRecAlteracao = aoc_sof$origem_alteracao_orc,
+  codUnidadeSub = aoc_sof$uo_alteracao_orc,
+  codFuncao = aoc_sof$funcao,
+  codSubFuncao = aoc_sof$subfuncao,
+  codPrograma = aoc_sof$programa,
+  idAcao = aoc_sof$projativ,
+  idSubAcao = aoc_sof$subitem_projativ,
+  naturezaDespesa = aoc_sof$natureza_despesa,
+  codFontRecursos = paste(aoc_sof$cod_siafic_grupo, aoc_sof$cod_siafic_fonte,"000",sep =""),
+  vlAcrescimo = ifelse(aoc_sof$ind_acrescimo_reducao == "A", aoc_sof$valor_acrescimo_reducao, NA)
+)
+tabela_14_sof <- tabela_14_sof[complete.cases(tabela_14_sof), ]
+
+tabela_14_sof <- distinct(aoc_sof,   ) #vamos selecionar somente as colunas que vão compor a validação
+
+tabela_15_sof <- data.frame(
+  origemRecAlteracao = aoc_sof$origem_alteracao_orc,
+  codUnidadeSub = aoc_sof$uo_alteracao_orc,
+  codFuncao = aoc_sof$funcao,
+  codSubFuncao = aoc_sof$subfuncao,
+  codPrograma = aoc_sof$programa,
+  idAcao = aoc_sof$projativ,
+  idSubAcao = aoc_sof$subitem_projativ,
+  naturezaDespesa = aoc_sof$natureza_despesa,
+  codFontRecursos = paste(aoc_sof$cod_siafic_grupo, aoc_sof$cod_siafic_fonte,"000",sep =""),
+  vlReducao = ifelse(aoc_sof$ind_acrescimo_reducao == "D", aoc_sof$valor_acrescimo_reducao, NA)
+)
+tabela_15_sof <- tabela_15_sof[complete.cases(tabela_15_sof), ]
+
+tabela_15_sof <- distinct(aoc_sof,   )#vamos selecionar somente as colunas que vão compor a validação
+
