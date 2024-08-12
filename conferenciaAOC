@@ -1,4 +1,4 @@
-#Conferência SICOM - aocEmail x aocSof
+#Conferência SICOM - aocEmail x aocGRP
 
 # Carregar a primeira planilha
 aoc_email <- read.csv2("C:/PBH/trabalho/2023/SICOM/Conferência 2023/aoc_email_ago.csv", header = FALSE)
